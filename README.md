@@ -11,15 +11,21 @@ This template should help get you started developing with Vue 3 in Vite.
 See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## 项目运行
+
 安装依赖
+
 ```javascript
-yarn install
+npm install
 ```
+
 dev环境
+
 ```javascript
 npm run dev
 ```
+
 项目打包
+
 ```javascript
 npm run build
 ```
