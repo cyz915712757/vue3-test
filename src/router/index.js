@@ -1,13 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../pages/HomeView.vue'
+import DataSet from '../pages/DataSet.vue'
+import { userInfoStore } from '@/stores/userInfo'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  base: '/ai',
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      name: 'dataSet',
+      component: DataSet,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../pages/Login.vue'),
+    },
+    {
+      path: '/createData',
+      name: 'createData',
+      component: () => import('../pages/CreateData.vue'),
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: () => import('../pages/IndexView.vue'),
     },
     {
       path: '/about',
@@ -18,6 +35,21 @@ const router = createRouter({
       component: () => import('../pages/AboutView.vue'),
     },
   ],
+})
+const whiteList = ['/login']
+router.beforeEach((to, from) => {
+  const userInfo = userInfoStore()
+  if (whiteList.indexOf(to.path) !== -1) {
+    return true
+  }
+  // 没有登录，跳转到登录页
+  if (!userInfo.isLogin) {
+    return { path: '/login' }
+  }
+  if (to.path === '/about') {
+    return { path: '/login' }
+  }
+  return true
 })
 
 export default router

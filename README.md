@@ -12,16 +12,15 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## 项目运行
 
+项目环境：node>=18+
+
 安装依赖
 
 ```javascript
 npm install
-```
-
-dev环境
-
-```javascript
-npm run dev
+npm run dev //dev环境
+npm run devtest //devtest环境
+npm run kdtest //kdtest环境
 ```
 
 项目打包
